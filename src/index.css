@@ -1,0 +1,178 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/bricolage-grotesque/wght.css';
+@import '@fontsource-variable/dm-sans/wght.css';
+
+@theme {
+    --font-display: 'Bricolage Grotesque Variable', 'Arial Black', system-ui, sans-serif;
+    --font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
+
+    --color-ink: #1a0b12;
+    --color-muted: #6a4757;
+    --color-blush: #fff5f8;
+    --color-petal: #fde7ef;
+    --color-rose: #f4b6c9;
+    --color-pink: #d9779a;
+    --color-bloom: #c9567f;
+    --color-band: #b8456e;
+    --color-berry: #a61e57;
+    --color-berry-dark: #821545;
+    --color-line: #efd3dd;
+    --color-chrome: #e9e9ee;
+}
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        background: #fff;
+        color: var(--color-ink);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+    }
+    button,
+    [role='button'],
+    a,
+    select,
+    summary,
+    label[for],
+    input[type='checkbox'],
+    input[type='file'],
+    input[type='submit'] {
+        cursor: pointer;
+    }
+    button:disabled {
+        cursor: not-allowed;
+    }
+    :focus-visible {
+        outline: 3px solid var(--color-berry);
+        outline-offset: 2px;
+        border-radius: 6px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.001ms !important;
+            transition-duration: 0.001ms !important;
+        }
+    }
+}
+
+@utility btn {
+        @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-bold transition;
+    }
+@utility btn-primary {
+        @apply btn bg-berry text-white hover:bg-berry-dark;
+    }
+@utility btn-soft {
+        @apply btn bg-petal text-berry-dark hover:bg-rose/60;
+    }
+@utility btn-outline {
+        @apply btn border-2 border-berry text-berry hover:bg-petal;
+    }
+@utility btn-white {
+        @apply btn bg-white text-berry-dark hover:bg-petal;
+    }
+@utility btn-danger {
+        @apply btn bg-red-700 text-white hover:bg-red-800;
+    }
+@utility field {
+        @apply min-h-11 w-full rounded-2xl border-2 border-line bg-white px-4 py-2 text-base text-ink placeholder:text-muted/70 focus:border-berry focus:outline-none;
+    }
+@utility label {
+        @apply mb-1.5 block text-sm font-bold text-ink;
+    }
+@utility error-text {
+        @apply mt-1.5 text-sm font-semibold text-red-700;
+    }
+@utility pill {
+        @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-bold;
+    }
+
+/* Teks raksasa bergaya editorial */
+.mega {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.82;
+}
+
+/* Bentuk chrome cair (dekoratif) */
+.chrome-blob {
+    filter: drop-shadow(0 18px 24px rgb(120 40 70 / 0.25));
+}
+
+@keyframes floaty {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-12px) rotate(4deg);
+    }
+}
+.floaty {
+    animation: floaty 7s ease-in-out infinite;
+}
+
+@keyframes progress-run {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+.progress-run {
+    animation: progress-run 1.1s ease-in-out infinite;
+}
+
+@keyframes spin-around {
+    to {
+        transform: rotate(360deg);
+    }
+}
+.spin {
+    animation: spin-around 0.8s linear infinite;
+}
+
+/* Konten Markdown (fallback tanpa JS & wrapper Viewer) */
+.prose-post {
+    font-size: 1.125rem;
+    line-height: 1.85;
+    color: var(--color-ink);
+    overflow-wrap: anywhere;
+}
+.prose-post .toastui-editor-contents {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    color: var(--color-ink);
+}
+.prose-post .toastui-editor-contents h1,
+.prose-post .toastui-editor-contents h2,
+.prose-post .toastui-editor-contents h3 {
+    font-family: var(--font-display);
+    border-bottom: 0;
+    color: var(--color-berry-dark);
+    margin-top: 1.6em;
+}
+.prose-post .toastui-editor-contents a {
+    color: var(--color-berry);
+    text-decoration: underline;
+}
+.prose-post .toastui-editor-contents blockquote {
+    border-left: 4px solid var(--color-pink);
+    color: var(--color-muted);
+}
+.prose-post .toastui-editor-contents p,
+.prose-post .toastui-editor-contents li {
+    color: var(--color-ink);
+}
+.prose-post .toastui-editor-contents code {
+    color: var(--color-berry-dark);
+    background: var(--color-petal);
+}
